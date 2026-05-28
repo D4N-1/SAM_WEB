@@ -41,17 +41,18 @@ formGet.addEventListener("submit", function(event) {
 })
 
 const postForm = document.getElementById("postCreateForm")
-const contactoPost = document.getElementById("postContacto").value
-const correoPost = document.getElementById("postCorreo").value
-const nombrePost = document.getElementById("postNombre").value
 
 postForm.addEventListener("submit", function(event) {
     event.preventDefault()
+    const contactoPost = document.getElementById("postContacto").value
+    const correoPost = document.getElementById("postCorreo").value
+    const nombrePost = document.getElementById("postNombre").value
     const datosContacto = {
         uid: contactoPost,
         lid: correoPost,
         name: nombrePost
     }
+    console.log(datosContacto)
 
     fetch("https://api.sambot.live/contacts", {
         method: "POST",
@@ -68,3 +69,4 @@ postForm.addEventListener("submit", function(event) {
         console.log(error)
     })
 })
+
