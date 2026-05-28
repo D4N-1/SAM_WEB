@@ -1,0 +1,47 @@
+* {
+    font-family: monospace;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+    color: white;
+    padding: 50px;
+}
+
+.root-container {
+    display: grid;
+    place-items: center;
+}
+
+.flex-container {
+    display:flex;
+    justify-content: center;
+    align-items: start;
+    padding: 20px;
+}
+
+.form {
+    padding: 20px;
+    border-radius: 20px 5px 20px 20px;
+    border: 1px white solid;
+    margin: 10px;
+    min-width: 250px;
+}
+
+.form input {
+    padding: 5px;
+    border-radius: 10px;
+    border: none
+}
+
+.form button {
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.respuesta {
+    font-size: 1.2rem;
+}

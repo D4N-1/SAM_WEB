@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samweb</title>
+    <link rel="stylesheet" href="src/css/style.css">
+    <script src="src/script/code.js" defer></script>
+</head>
+<body>
+    <div class="root-container">
+        <h1>Hola!</h1>
+    <div class="flex-container">
+        <div class="form-container">
+            <form class="form getContactForm" id="contactForm">
+            <label> Contacto <br>
+                <input type="text" placeholder="123456789" id="contacto" required>
+                <button type="submit"> Enviar</button>
+            </label>
+            </form>
+            <p class="respuesta" id="getRespuesta"></p>
+        </div>
+        <div class="form-container">
+            <form class="form postContactForm" id="postCreateForm">
+                <label> Numero: <br>
+                    <input type="text" placeholder="584562513" id="postContacto" required>
+                </label>
+                <br>
+                <label>Correo: <br>
+                    <input type="text" placeholder="ola@gmail" id="postCorreo">
+                </label>
+                <br>
+                <label> Nombre: <br>
+                    <input type="text" placeholder="Dani" id="postNombre">
+                </label>
+                <button type="submit"> Enviar</button>
+            </label>
+            </form>
+        </div>
+    </div>
+    </div>
+</body>
+</html>
