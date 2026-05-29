@@ -17,9 +17,15 @@ body {
     background-color: var(--color-ebebeb);
 }
 
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
 /* Menu Lateral */
 
-.nav-menu-lateral {
+.side-menu {
     position: fixed;
     background-color: var(--color-fafafa);
     padding: 70px 10px 0 10px;
@@ -28,20 +34,21 @@ body {
     transition: width .5s ease;
     overflow: hidden;
     z-index: 50;
+    color: #000;
 }
 
-.nav-item {
+.side-menu__link {
     padding: 3px 0 3px 3px;
 }
 
-.nav-item:hover {
+.side-menu__link:hover {
     border-radius: 20px;
     background-color: #bbb;
 }
 
 /* Menu superior */
 
-.nav-menu-superior {
+.top-menu {
     position: fixed;
     top: 0;
     left: 0;
@@ -53,57 +60,57 @@ body {
     color: #000;
     padding: 0 10px;
     box-shadow: 0px 0px 10px 0px black;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 20px;
+    font-size: 1.25rem;
     gap: 10px;
+    font-weight: bolder;
 }
 
-.nav-menu-superior a{
-    text-decoration: none;
-    color: #000;
+.top-menu a{
     transition: background-color .5s ease, transform .5s ease;
     border-radius: 20px;
     padding: 5px;
 }
 
-.nav-menu-superior a:hover {
+.top-menu a:hover {
     background-color: #cacaca;
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
-.menu-superior-perfil {
+.top-menu__perfil {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 20px;
+    font-size: 1.25rem;
     gap: 10px;
     padding-right: 10px;
 }
 
-.menu-superior-perfil .menu-superior-avatar {
+.top-menu__perfil .top-menu__perfil-img {
     width: 35px;
     height: 35px;
     object-fit: cover;
     object-position: top;
 }
 
-.menu-superior-enlaces {
+.top-menu__links {
     display: flex;
     justify-content: space-around;
     align-items: center;
     width: 45%;
 }
 
-.menu-superior-login {
+.top-menu__login {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 10px
 }
 
-.menu-superior-login .login-button {
+.top-menu__login .top-menu__login-button {
     padding: 10px;
     background-color: var(--color-ebe844);
     border-radius: 20px;
@@ -113,7 +120,7 @@ body {
 /* Menu lateral desktop */
 
 @media screen and (min-width: 541px) {
-    .nav-menu-lateral {
+    .side-menu {
     top: 0;
     bottom: 0;
     right: 0;
@@ -121,11 +128,11 @@ body {
     width: 50px;
     }
 
-    .nav-menu-lateral:hover {
+    .side-menu:hover {
     width: 200px;
     }
 
-    .nav-menu-lateral .nav-logo {
+    .side-menu .side-menu__logo {
     display: grid;
     grid-template-columns: auto 1fr;
     width: 100%;
@@ -135,18 +142,14 @@ body {
     border-bottom: 2px solid #7777;
     }
     
-    .nav-menu-lateral .nav-logo h2 {
-    font-size: 2rem;
-    }
-    
-    .nav-menu-lateral .nav-container-items {
+    .side-menu .side-menu__links {
     display: flex;
     flex-direction: column;
     gap: 20px;
     width: 100%;
     }
     
-    .nav-menu-lateral .nav-item {
+    .side-menu .side-menu__link {
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 20px;
@@ -154,7 +157,13 @@ body {
     text-decoration: none;
     }
 
-    .nav-menu-lateral .nav-item-logo  {
+    .side-menu .side-menu__logo-img  {
+    width: 25px;
+    height: 25px;
+    opacity: 1;
+    }
+
+    .side-menu .side-menu__link-svg  {
     width: 25px;
     height: 25px;
     opacity: 1;
@@ -162,22 +171,25 @@ body {
     stroke: currentColor;
     }
     
-    .nav-menu-lateral .item-hidden {
+    .side-menu .side-menu__title {
     opacity: 0;
     text-decoration: none;
     pointer-events: none;
     visibility: hidden;
-    color: black;
     font-weight: bolder;
     font-size: 1.2rem;
     transition: opacity .4s ease-in, visibility .4s ease;
     white-space: nowrap;
     }
     
-    .nav-menu-lateral:hover .item-hidden {
+    .side-menu:hover .side-menu__title {
     opacity: 1;
     pointer-events: all;
     visibility: visible;
+    }
+
+    h1.side-menu__title {
+    font-size: 2rem;
     }
 
     .section-1 {
@@ -189,7 +201,7 @@ body {
 /* Menu lateral mobile */
 
 @media screen and (max-width: 540px) {
-    .nav-menu-lateral {
+    .side-menu {
     bottom: 0;
     left: 0;
     right: 0;
@@ -198,36 +210,38 @@ body {
     padding: 5px;
     }
 
-    .nav-menu-lateral .nav-logo {
+    .side-menu .side-menu__logo {
     display: none;
     }
 
-    .nav-menu-lateral .nav-container-items {
+    .side-menu .side-menu__links {
     display: flex;
     justify-content: space-evenly;
     width: 100%;
     }
 
-    .nav-menu-lateral .nav-item {
+    .side-menu .side-menu__link {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     text-decoration: none;
-    color: black;
     gap: 3px;
     width: 25%;
     }
 
-    .nav-menu-lateral .nav-item-logo {
+    .side-menu .side-menu__logo-img {
     width: 30px;
+    height: 30px;
+    opacity: 1;
+    }
+
+    .side-menu .side-menu__link-svg {
+    width: 30px;
+    height: 30px;
     opacity: 1;
     fill: none;
     stroke: currentColor;
-    }
-
-    .nav-menu-lateral .hero {
-    padding: 30px 60px;
     }
 }
 
@@ -251,7 +265,7 @@ main::after {
     transition: opacity .5s ease;
 }
 
-body:has(.nav-menu-lateral:hover) main::after {
+body:has(.side-menu:hover) main::after {
     opacity: 1;
 }
 
@@ -260,34 +274,39 @@ body:has(.nav-menu-lateral:hover) main::after {
     height: 100vh;
     padding: 10px
 }
-
-h1 {
+.section-1__title {
     text-align: center;
+    font-size: 2rem;
 }
-
-.section-1-flex-container {
+.contacts-panel {
     display:flex;
     justify-content: space-around;
     align-items: start;
     padding: 10px;
+    gap: 10px;
 }
 
-.form-container {
+.contacts-panel__box {
     outline: 2px black solid;
     border-radius: 20px;
-    padding: 20px
+    padding: 20px;
+    min-height: 330px
 }
+.contacts-panel__title {
 
-.form {
+}
+.contacts-panel__form {
     padding: 20px;
     border-radius: 20px 5px 20px 20px;
     margin: 10px;
 }
-.form label {
+.contacts-panel__form-label {
+    display: flex;
+    flex-direction: column;
     font-size: 1.1rem;
 }
 
-.form input {
+.contacts-panel__input {
     margin: 3px 0;
     padding: 5px;
     border-radius: 0 20px 10px 0px;
@@ -297,18 +316,18 @@ h1 {
     border-left: none;
 }
 
-.form button {
+.contacts-panel__form-submit {
     padding: 5px;
     border-radius: 10px;
     transition: background-color .5s ease, transform .5s ease;
 }
 
-.form button:hover {
+.contacts-panel__form-submit:hover {
     background-color: #ccc;
     transform: scale(1.05);
 }
 
-.respuesta {
+.contacts-panel__answer {
     font-size: 1.2rem;
 }
 
@@ -316,19 +335,21 @@ h1 {
     background-color: var(--color-141210);
 }
 
-.section-3-flex-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
-    flex-wrap: wrap;
-    gap: 20px;
+.section-3__box {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 10px;
     padding: 30px 0;
 }
 
-.section-3-flex-items {
+.section-3__card {
     background-color: #cccc;
     padding: 20px;
     border-radius: 20px;
+}
+
+.section-3__card-title {
+    font-size: 1.2rem;
 }
 
 .section-4 {

@@ -1,5 +1,5 @@
-const formGet = document.getElementById("contactForm")
-const respuesta = document.getElementById("getRespuesta")
+const contactsGetForm = document.getElementById("contactsGetForm")
+const respuesta = document.getElementById("contactsGetAnswer")
 
 function crearDato(texto, valor) {
     let p = document.createElement("p")
@@ -8,12 +8,12 @@ function crearDato(texto, valor) {
     return p;
 }
 
-formGet.addEventListener("submit", function(event) {
+contactsGetForm.addEventListener("submit", function(event) {
     event.preventDefault()
     respuesta.innerHTML = ""
-    const contacto = document.getElementById("contacto").value
+    const contactoPost = document.getElementById("contactsGetInputPhone").value
 
-    fetch(`https://api.sambot.live/contacts/uid/${contacto}`)
+    fetch(`https://api.sambot.live/contacts/uid/${contactsGetForm}`)
     .then(response => response.json())
     .then(data => {
         console.log(data)
@@ -27,7 +27,7 @@ formGet.addEventListener("submit", function(event) {
             infocontainer.append(
                 crearDato("Nombre: ", data.name),
                 crearDato("Numero: ", data.uid),
-                crearDato("Whatsapp ID: ", data.uuid),
+                crearDato("Whatsapp ID: ", data.lid),
                 crearDato("Lid: ", data.lid),
                 crearDato("Actualizado: ", data.updatedAt),
                 crearDato("Creado: ", data.createdAt)
@@ -40,16 +40,16 @@ formGet.addEventListener("submit", function(event) {
     })
 })
 
-const postForm = document.getElementById("postCreateForm")
+const contactsPostForm = document.getElementById("contactsPostForm")
 
-postForm.addEventListener("submit", function(event) {
+contactsPostForm.addEventListener("submit", function(event) {
     event.preventDefault()
-    const contactoPost = document.getElementById("postContacto").value
-    const correoPost = document.getElementById("postCorreo").value
-    const nombrePost = document.getElementById("postNombre").value
+    const contactoPost = document.getElementById("contactsPostInputPhone").value
+    const whatsappId = document.getElementById("contactsPostInputWhatsappId").value
+    const nombrePost = document.getElementById("contactsPostInputName").value
     const datosContacto = {
         uid: contactoPost,
-        lid: correoPost,
+        lid: whatsappId,
         name: nombrePost
     }
     console.log(datosContacto)
