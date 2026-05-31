@@ -1,4 +1,4 @@
-const contactsGetForm = document.getElementById("contactsGetForm")
+/*const contactsGetForm = document.getElementById("contactsGetForm")
 const respuesta = document.getElementById("contactsGetAnswer")
 
 function crearDato(texto, valor) {
@@ -70,3 +70,4 @@ contactsPostForm.addEventListener("submit", function(event) {
     })
 })
 
+*/

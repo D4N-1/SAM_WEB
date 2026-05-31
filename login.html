@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="src/media/img/mini/Matikanetannhauser.webp" type="image/x-icon">
+    <title>Samweb</title>
+    <link rel="stylesheet" href="src/css/style.css">
+    <script src="src/script/login.js" defer></script>
+</head>
+<body class="login">
+    <header>
+        <nav>
+            <div class="side-menu">
+                <div class="side-menu__logo">
+                    <img class="side-menu__logo-img" src="src/media/img/mini/Kitasan_Black.webp" alt="Uma">
+                    <h1 class="side-menu__title">Sambot</h1>
+                </div>
+                <div class="side-menu__links">
+                    
+                    <a href="#" class="side-menu__link">
+                        <svg class="side-menu__link-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 16C15 15.2044 14.6839 14.4413 14.1213 13.8787C13.5587 13.3161 12.7957 13 12 13C11.2044 13 10.4413 13.3161 9.87868 13.8787C9.31607 14.4413 9 15.2043 9 16V20H4L4 10L8 6.5M12 3L20 10L20 20H15" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <p class="side-menu__title">Home</p>
+                    </a>
+                </div>
+            </div>
+            <div class="top-menu">
+                <div class="top-menu__perfil">
+                    <img class="top-menu__perfil-img" src="src/media//img/mini/Mayano_Top_Gun.webp" alt="">
+                    <p class="top-menu__perfil-name">Hola!</p>
+                </div>
+                <div class="top-menu__links">
+                    <a href="#" class="top-menu__link">Inicio</a>
+                    <a href="#" class="top-menu__link">Noticias</a>
+                    <a href="#" class="top-menu__link">Comandos</a>
+                    <a href="#" class="top-menu__link">Más</a>
+                </div>
+                <div class="top-menu__login">
+                    <a href="#" class="top-menu__login-lang">ESP</a>
+                    <a href="login.html" class="top-menu__login-button">Iniciar Sesión</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="section-1">
+            <div class="action-card">
+                <img class="action-card__logo" src="src/media/img/mini/Mayano_Top_Gun.webp" alt="">
+                <h2 class="action-card__title">Bienvenido!</h2>
+                <p class="action-card__p">Inicio de sesión</p>
+                <form class="action-card__form" action="" method="POST">
+                    <label class="action-card__label"> 
+                        <a href="#" class="action-card__change-mailphone">
+                            <svg id="changeFormMail" class="action-card__mailphone-svg action-card__mailphone-svg--mail" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 7.00005L10.2 11.65C11.2667 12.45 12.7333 12.45 13.8 11.65L20 7" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <rect x="3" y="5" width="18" height="14" rx="2" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <svg id="changeFormPhone" class="action-card__mailphone-svg action-card__mailphone-svg--phone hidden" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 14C20 17.7712 20 19.6569 18.8284 20.8284C17.6569 22 15.7712 22 12 22C8.22876 22 6.34315 22 5.17157 20.8284C4 19.6569 4 17.7712 4 14V10C4 6.22876 4 4.34315 5.17157 3.17157C6.34315 2 8.22876 2 12 2C15.7712 2 17.6569 2 18.8284 3.17157C20 4.34315 20 6.22876 20 10" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M15 5H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"/>
+                                <circle cx="12" cy="17" r="2" stroke="#1C274C" stroke-width="1.5"/>
+                            </svg>
+                        </a>
+                        <select name="prefix" id="prefix" class="action-card__select">
+                            <option value="" class="action-card__option">ve +58</option>
+                            <option value="" class="action-card__option">co +57</option>
+                            <option value="" class="action-card__option">pe +51</option>
+                            <option value="" class="action-card__option">mx +52</option>
+                        </select>
+                        <input id="inputMailPhone" class="action-card__input action-card__input--prefix" placeholder="Celular" type="tel" name="cedula" id="loginCardCedula">
+                    </label>
+                    <label id="loginPasswordLabel" class="action-card__label">
+                        <input id="loginPasswordInput" class="action-card__input" placeholder="Contraseña" type="password" name="password">
+                    </label>
+                        <input type="hidden" name="form" value="login">
+                        <a id="loginCodeForm" data-currently="password" class="action-card__change-form" href="">Iniciar sesión con codigo</a>
+                    <button id="submitForm" data-currently="password" class="action-card__button" type="submit">Iniciar</button>
+                    <p id="codigoEnviado"></p>
+                </form>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

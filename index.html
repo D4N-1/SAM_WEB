@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,29 +11,23 @@
 <body>
     <div class="root-container">
         <header>
-            <div class="side-menu">
-                <div class="side-menu__logo">
-                    <img class="side-menu__logo-img" src="src/media/img/mini/Kitasan_Black.webp" alt="Uma">
-                    <h1 class="side-menu__title">Sambot</h1>
+            <nav>
+                <div class="side-menu">
+                    <div class="side-menu__logo">
+                        <img class="side-menu__logo-img" src="src/media/img/mini/Kitasan_Black.webp" alt="Uma">
+                        <h1 class="side-menu__title">Sambot</h1>
+                    </div>
+                    <div class="side-menu__links">
+                        
+                        <a href="#" class="side-menu__link">
+                            <svg class="side-menu__link-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 16C15 15.2044 14.6839 14.4413 14.1213 13.8787C13.5587 13.3161 12.7957 13 12 13C11.2044 13 10.4413 13.3161 9.87868 13.8787C9.31607 14.4413 9 15.2043 9 16V20H4L4 10L8 6.5M12 3L20 10L20 20H15" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <p class="side-menu__title">Home</p>
+                        </a>
+                    </div>
                 </div>
-                <div class="side-menu__links">
-                    <a href="#" class="side-menu__link">
-                        <svg class="side-menu__link-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon line">
-                            <path d="M10.56,18.35,9,17.05a1,1,0,0,1-.11-1.41L10.34,14H3V10h7.34L8.93,8.36A1,1,0,0,1,9,7l1.52-1.3A1,1,0,0,1,12,5.76l4.79,5.59a1,1,0,0,1,0,1.3L12,18.24A1,1,0,0,1,10.56,18.35ZM17,4h3a1,1,0,0,1,1,1V19a1,1,0,0,1-1,1H17"
-                            stroke-linecap= "round" stroke-linejoin= "round" stroke-width= "1.5"/>
-                        </svg>
-                        <p class="side-menu__title">Inicia sesion</p>
-                    </a>
-                    
-                    <a href="#" class="side-menu__link">
-                        <svg class="side-menu__link-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M15 16C15 15.2044 14.6839 14.4413 14.1213 13.8787C13.5587 13.3161 12.7957 13 12 13C11.2044 13 10.4413 13.3161 9.87868 13.8787C9.31607 14.4413 9 15.2043 9 16V20H4L4 10L8 6.5M12 3L20 10L20 20H15" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <p class="side-menu__title">Home</p>
-                    </a>
-                </div>
-            </div>
-            <div class="top-menu">
+                <div class="top-menu">
                     <div class="top-menu__perfil">
                         <img class="top-menu__perfil-img" src="src/media//img/mini/Mayano_Top_Gun.webp" alt="">
                         <p class="top-menu__perfil-name">Hola!</p>
@@ -42,49 +36,21 @@
                         <a href="#" class="top-menu__link">Inicio</a>
                         <a href="#" class="top-menu__link">Noticias</a>
                         <a href="#" class="top-menu__link">Comandos</a>
-                        <a href="#" class="top-menu__link">Info</a>
                         <a href="#" class="top-menu__link">Más</a>
                     </div>
                     <div class="top-menu__login">
                         <a href="#" class="top-menu__login-lang">ESP</a>
-                        <a href="#" class="top-menu__login-button">Iniciar Sesión</a>
+                        <a href="login.html" class="top-menu__login-button">Iniciar Sesión</a>
                     </div>
-            </div>
+                </div>
+            </nav>
         </header>
         <main>
             <section class="section-1">
-                <h2 class="section-1__title">Peticiones a Contacts</h2>
-                <div class="contacts-panel">
-                    <div class="contacts-panel__box">
-                        <h2 class="contacts-panel__title">Peticion GET (Revisa algun contacto)</h2>
-                        <form class="contacts-panel__form" id="contactsGetForm">
-                            <label class="contacts-panel__form-label"> Contacto 
-                                <input class="contacts-panel__input" type="text" placeholder="123456789" id="contactsGetInputPhone" required>
-                            </label>
-                            <button class="contacts-panel__form-submit" type="submit"> Enviar</button>
-                        </form>
-                        <p class="contacts-panel__answer" id="contactsGetAnswer"></p>
-                    </div>
-                    <div class="contacts-panel__box">
-                        <h2 class="contacts-panel__title">Peticion POST (crea un contacto)</h2>
-                        <form class="contacts-panel__form" id="contactsPostForm">
-                            <label class="contacts-panel__form-label"> Contacto 
-                                <input class="contacts-panel__input" type="text" placeholder="584562513" id="contactsPostInputPhone" required>
-                            </label>
-                            <label class="contacts-panel__form-label">ID Whatsapp
-                                <input class="contacts-panel__input" type="text" placeholder="ola@whatsapp" id="contactsPostInputWhatsappId">
-                            </label>
-                            <label class="contacts-panel__form-label"> Nombre: <br>
-                                <input class="contacts-panel__input" type="text" placeholder="Dani" id="contactsPostInputName">
-                            </label>
-                            <button class="contacts-panel__form-submit" type="submit"> Enviar</button>
-                        </label>
-                        </form>
-                    </div>
-                </div>
+                <h2>hola 1</h2>
             </section>
             <section class="section-2">
-                <h2>hola</h2>
+                <h2>hola 2</h2>
             </section>
             <section class="section-3">
                 <div class="section-3__box">
@@ -123,7 +89,7 @@
                 </div>
             </section>
             <section class="section-4">
-
+                <h2>hola 4</h2>
             </section>
         </main>
         <footer></footer>
