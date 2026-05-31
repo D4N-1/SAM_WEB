@@ -1,16 +1,17 @@
-* {
-    font-family: monospace;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 :root {
     --color-fafafa: #fafafa;
     --color-ebebeb: #ebebeb;
     --color-ebe844: #ebe844; 
     --color-141210: #141210;
 } 
+
+
+* {
+    font-family: monospace;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
     color: white;
@@ -64,9 +65,8 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 1.25rem;
-    gap: 10px;
     font-weight: bolder;
+    gap: 5px
 }
 
 .top-menu a{
@@ -81,12 +81,12 @@ a {
 }
 
 .top-menu__perfil {
+    flex: 0 1 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 1.25rem;
-    gap: 10px;
-    padding-right: 10px;
+    gap: 5px;
 }
 
 .top-menu__perfil .top-menu__perfil-img {
@@ -97,29 +97,143 @@ a {
 }
 
 .top-menu__links {
+    flex: 1 1 auto;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    width: 45%;
+    gap: 5px;
 }
 
 .top-menu__login {
+    flex: 0 2 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 10px
 }
 
-.top-menu__login .top-menu__login-button {
-    padding: 10px;
+.top-menu__login-button {
+    padding: 15px;
     background-color: var(--color-ebe844);
     border-radius: 20px;
+    text-align: center;
 }
+
+/*//////////////////////*/
+
+main {
+    margin: 50px 50px 0px 0px;
+    border-radius: 20px;
+}
+
+main::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    background-color: #0004;
+    opacity: 0;
+    transition: opacity .5s ease;
+}
+
+body:has(.side-menu:hover) main::after {
+    opacity: 1;
+}
+
+.section-1, .section-2, .section-3, .section-4{
+    color: black;
+    min-height: 100vh;
+    padding: 30px 10px
+}
+.section-1__title {
+    text-align: center;
+    font-size: 2rem;
+}
+.contacts-panel {
+    display:flex;
+    justify-content: space-around;
+    align-items: start;
+    flex-wrap: wrap;
+    padding: 10px;
+    gap: 20px;
+}
+
+.contacts-panel__box {
+    outline: 2px black solid;
+    border-radius: 20px;
+    padding: 20px;
+    min-height: 330px;
+}
+.contacts-panel__form {
+    padding: 20px;
+    border-radius: 20px 5px 20px 20px;
+    margin: 10px;
+}
+.contacts-panel__form-label {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.1rem;
+}
+
+.contacts-panel__input {
+    margin: 3px 0;
+    padding: 5px;
+    border-radius: 0 20px 10px 0px;
+    border: none;
+    border: 2px solid black;
+    border-top: none;
+    border-left: none;
+}
+
+.contacts-panel__form-submit {
+    padding: 5px;
+    border-radius: 10px;
+    transition: background-color .5s ease, transform .5s ease;
+}
+
+.contacts-panel__form-submit:hover {
+    background-color: #ccc;
+    transform: scale(1.05);
+}
+
+.contacts-panel__answer {
+    font-size: 1.2rem;
+}
+
+.section-3 {
+    background-color: var(--color-141210);
+}
+
+.section-3__box {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 10px;
+    padding: 30px 0;
+}
+
+.section-3__card {
+    background-color: #cccc;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.section-3__card-title {
+    font-size: 1.2rem;
+}
+
+.section-4 {
+    background-color: #000;
+}
+
 /* >>>>>>>MEDIA QUERY<<<<< */
 
 /* Menu lateral desktop */
 
-@media screen and (min-width: 541px) {
+@media screen and (min-width: 600px) {
+
     .side-menu {
     top: 0;
     bottom: 0;
@@ -191,16 +305,29 @@ a {
     h1.side-menu__title {
     font-size: 2rem;
     }
-
-    .section-1 {
-    margin-left: 50px;
-    margin-top: 50px;
-    }
 }
 
-/* Menu lateral mobile */
+/* Menues mobile */
 
-@media screen and (max-width: 540px) {
+@media screen and (max-width: 599px) {
+
+    main {
+        margin: 50px 0 0 0;
+    }
+
+    .top-menu {
+        padding: 5px;
+    }
+
+    .top-menu__perfil-name, .top-menu__link, 
+    .top-menu__login-lang, .top-menu__login-button {
+        font-size: 0.8rem;
+    }
+
+    .top-menu__login {
+        gap: 5px
+    }
+
     .side-menu {
     bottom: 0;
     left: 0;
@@ -243,115 +370,4 @@ a {
     fill: none;
     stroke: currentColor;
     }
-}
-
-/*//////////////////////*/
-
-main {
-    margin: 50px 50px 0px 0px;
-    border-radius: 20px;
-}
-
-main::after {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-    background-color: #0004;
-    opacity: 0;
-    transition: opacity .5s ease;
-}
-
-body:has(.side-menu:hover) main::after {
-    opacity: 1;
-}
-
-.section-1, .section-2, .section-3, .section-4{
-    color: black;
-    height: 100vh;
-    padding: 10px
-}
-.section-1__title {
-    text-align: center;
-    font-size: 2rem;
-}
-.contacts-panel {
-    display:flex;
-    justify-content: space-around;
-    align-items: start;
-    padding: 10px;
-    gap: 10px;
-}
-
-.contacts-panel__box {
-    outline: 2px black solid;
-    border-radius: 20px;
-    padding: 20px;
-    min-height: 330px
-}
-.contacts-panel__title {
-
-}
-.contacts-panel__form {
-    padding: 20px;
-    border-radius: 20px 5px 20px 20px;
-    margin: 10px;
-}
-.contacts-panel__form-label {
-    display: flex;
-    flex-direction: column;
-    font-size: 1.1rem;
-}
-
-.contacts-panel__input {
-    margin: 3px 0;
-    padding: 5px;
-    border-radius: 0 20px 10px 0px;
-    border: none;
-    border: 2px solid black;
-    border-top: none;
-    border-left: none;
-}
-
-.contacts-panel__form-submit {
-    padding: 5px;
-    border-radius: 10px;
-    transition: background-color .5s ease, transform .5s ease;
-}
-
-.contacts-panel__form-submit:hover {
-    background-color: #ccc;
-    transform: scale(1.05);
-}
-
-.contacts-panel__answer {
-    font-size: 1.2rem;
-}
-
-.section-3 {
-    background-color: var(--color-141210);
-}
-
-.section-3__box {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 10px;
-    padding: 30px 0;
-}
-
-.section-3__card {
-    background-color: #cccc;
-    padding: 20px;
-    border-radius: 20px;
-}
-
-.section-3__card-title {
-    font-size: 1.2rem;
-}
-
-.section-4 {
-    background-color: #000;
 }

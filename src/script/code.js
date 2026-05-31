@@ -11,9 +11,9 @@ function crearDato(texto, valor) {
 contactsGetForm.addEventListener("submit", function(event) {
     event.preventDefault()
     respuesta.innerHTML = ""
-    const contactoPost = document.getElementById("contactsGetInputPhone").value
+    const contactsGetInputPhone = document.getElementById("contactsGetInputPhone").value
 
-    fetch(`https://api.sambot.live/contacts/uid/${contactsGetForm}`)
+    fetch(`https://api.sambot.live/contacts/uid/${contactsGetInputPhone}`)
     .then(response => response.json())
     .then(data => {
         console.log(data)
