@@ -518,7 +518,7 @@ body:has(.side-menu:hover) main::after {
 
 @media screen and (min-width: 1000px) {
     .login .action-card {
-        width: 60%
+        width: 55%
     }
 
     .login .action-card__form {
