@@ -1,9 +1,15 @@
 :root {
     --color-fafafa: #fafafa;
     --color-ebebeb: #ebebeb;
-    --color-ebe844: #ebe844; 
-    --color-141210: #141210;
+    --color-cacaca: #c9c9c9;
+    --color-ebe844: #ebe844;
+    --color-edea6b: #edea6b;  
+    --color-26221f: #26221f;
+    --color-080807: #080807;
     --color-35f089: #35f089;
+    --color-69FAAB: #69FAAB;
+    --color-40D6B5: #40D6B5;
+    --color-54EBB6: #54EBB6;
 } 
 
 
@@ -33,7 +39,7 @@ a {
     padding: 70px 10px 0 10px;
     display: flex;
     gap: 20px;
-    transition: width .5s ease;
+    transition: width .5s ease, opacity .5s ease;
     overflow: hidden;
     z-index: 50;
     color: #000;
@@ -60,7 +66,7 @@ a {
     z-index: 60;
     background-color: var(--color-fafafa);
     color: #000;
-    padding: 0 10px;
+    padding: 0 0 0 10px;
     box-shadow: 0px 0px 10px 0px black;
 
     display: flex;
@@ -77,8 +83,8 @@ a {
 }
 
 .top-menu a:hover {
-    background-color: #cacaca;
-    transform: scale(1.05);
+    text-decoration: underline;
+    color: var(--color-40D6B5)
 }
 
 .top-menu__perfil {
@@ -114,16 +120,16 @@ a {
 }
 
 .top-menu .top-menu__login-button {
-    padding: 10px;
-    background-color: var(--color-ebe844);
-    border-radius: 20px;
+    padding: 15px 5px 15px 20px;
+    background-color: var(--color-35f089);
+    border-radius: 0 0 0 30px;
     text-align: center;
 }
 
 /*//////////////////////*/
 
 main {
-    margin: 50px 50px 0px 0px;
+    margin: 50px 0 0px 0px;
     border-radius: 20px;
 }
 
@@ -140,7 +146,7 @@ main::after {
     transition: opacity .5s ease;
 }
 
-body:has(.side-menu:hover) main::after {
+body.side-menu__active main::after {
     opacity: 1;
 }
 
@@ -155,7 +161,7 @@ body:has(.side-menu:hover) main::after {
 }
 
 .section-3 {
-    background-color: var(--color-141210);
+    background-color: var(--color-26221f)
 }
 
 .section-3__box {
@@ -175,8 +181,28 @@ body:has(.side-menu:hover) main::after {
     font-size: 1.2rem;
 }
 
-.section-4 {
-    background-color: #000;
+.side-menu__activator {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 999;
+}
+
+.side-menu__btn-activator {
+    border: none;
+    padding: 20px 5px 5px 5px; 
+    border-radius: 10px;
+    background-color: #fff;
+    transition: background-color .5s ease
+}
+
+.side-menu__btn-activator:hover {
+    cursor: pointer;
+    background-color: #ddd;
+}
+
+footer.home {
+    background-color: var(--color-080807);
 }
 
 /* >>>>>>>MEDIA QUERY<<<<< */
@@ -198,10 +224,8 @@ body:has(.side-menu:hover) main::after {
     bottom: 0;
     right: 0;
     flex-direction: column;
-    width: 50px;
-    }
-
-    .side-menu:hover {
+    opacity: 0;
+    pointer-events: none;
     width: 200px;
     }
 
@@ -245,20 +269,11 @@ body:has(.side-menu:hover) main::after {
     }
     
     .side-menu .side-menu__title {
-    opacity: 0;
     text-decoration: none;
-    pointer-events: none;
-    visibility: hidden;
     font-weight: bolder;
     font-size: 1.2rem;
     transition: opacity .4s ease-in, visibility .4s ease;
     white-space: nowrap;
-    }
-    
-    .side-menu:hover .side-menu__title {
-    opacity: 1;
-    pointer-events: all;
-    visibility: visible;
     }
 
     h1.side-menu__title {
@@ -270,16 +285,8 @@ body:has(.side-menu:hover) main::after {
 
 @media screen and (max-width: 599px) {
 
-    main {
-        margin: 50px 0 0 0;
-    }
-
     .top-menu {
         padding: 5px;
-    }
-
-    .top-menu__links {
-
     }
 
     .top-menu__perfil-name, .top-menu__link, 
@@ -466,6 +473,14 @@ body:has(.side-menu:hover) main::after {
     text-decoration: underline;
 }
 
+.action-card__send-code {
+    display: none;
+    border-radius: 10px;
+    border: none;
+    padding: 2px;
+    cursor: pointer;
+}
+
 .hidden {
     pointer-events: none;
     visibility: hidden;
@@ -555,4 +570,31 @@ body:has(.side-menu:hover) main::after {
     .login .action-card__form {
         width: 90%;
     }
+}
+
+/* ////////////////////////// */
+/* HOME */
+.section-1--home {
+    padding: 0;
+    display: grid;
+    grid-template-columns: 200px repeat(auto-fit, minmax(100px, 1fr));
+}
+
+.section-1--home .home-menu {
+    padding: 20px
+}
+
+.section-1--home .home-main {
+    position: relative;
+    padding: 20px;
+    background-color: var(--color-cacaca);
+}
+
+.section-1--home .home-main__box {
+    position: absolute;
+    background-color: var(--color-ebebeb);
+    padding: 80px;
+    border-radius: 20px;
+    right: 20px;
+    top: 20px;
 }

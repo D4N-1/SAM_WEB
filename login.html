@@ -14,13 +14,13 @@
             <div class="top-menu">
                 <div class="top-menu__perfil">
                     <img class="top-menu__perfil-img" src="src/media//img/mini/Mayano_Top_Gun.webp" alt="">
-                    <p class="top-menu__perfil-name">Hola!</p>
+                    <p class="top-menu__perfil-name"> | Yer</p>
                 </div>
                 <div class="top-menu__links">
                     <a href="index.html" class="top-menu__link">Inicio</a>
                     <a href="#" class="top-menu__link">Noticias</a>
                     <a href="#" class="top-menu__link">Comandos</a>
-                    <a href="#" class="top-menu__link">Más</a>
+                    <a href="home.html" class="top-menu__link">Más</a>
                 </div>
                 <div class="top-menu__login">
                     <a href="#" class="top-menu__login-lang">ESP</a>
@@ -33,7 +33,7 @@
         <section class="section-1">
             <div class="action-card">
                 <img class="action-card__logo" src="src/media/img/mini/Mayano_Top_Gun.webp" alt="">
-                <h2 class="action-card__title">Bienvenido!</h2>
+                <h2 class="action-card__title">Sam</h2>
                 <p class="action-card__p">Inicio de sesión</p>
                 <form class="action-card__form" action="" method="POST">
                     <label class="action-card__label"> 
@@ -58,9 +58,10 @@
                     </label>
                     <label id="loginPasswordLabel" class="action-card__label">
                         <input id="loginPasswordInput" class="action-card__input" placeholder="Contraseña" type="password" name="password">
+                        <button id="loginCodeBtn" class="action-card__send-code">Enviar codigo</button>
                     </label>
                         <input type="hidden" name="form" value="login">
-                        <a id="loginCodeForm" data-currently="password" class="action-card__change-form" href="">Iniciar sesión con codigo</a>
+                        <a id="loginCodeForm" data-currently="password" class="action-card__change-form" href="">Iniciar con codigo</a>
                     <button id="submitForm" data-currently="password" class="action-card__button" type="submit">Iniciar</button>
                     <p id="codigoEnviado"></p>
                 </form>

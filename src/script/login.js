@@ -6,6 +6,7 @@ const prefix = document.getElementById("prefix")
 const loginPasswordLabel = document.getElementById("loginPasswordLabel")
 const loginCodeForm = document.getElementById("loginCodeForm")
 const loginPasswordInput = document.getElementById("loginPasswordInput")
+const loginCodeBtn = document.getElementById("loginCodeBtn")
 const submitForm = document.getElementById("submitForm")
 
 changeFormPhone.addEventListener("click", (event) => {
@@ -17,7 +18,6 @@ changeFormPhone.addEventListener("click", (event) => {
     prefix.style.visibility = "visible"
 
     changeFormPhone.classList.add("hidden")
-    console.log("se oculto phone")
 })
 
 changeFormMail.addEventListener("click", (event) => {
@@ -29,7 +29,6 @@ changeFormMail.addEventListener("click", (event) => {
     prefix.style.visibility = "hidden"
 
     changeFormMail.classList.add("hidden")
-    console.log("se oculto mail")
 })
 
 loginCodeForm.addEventListener("click", (event) => {
@@ -38,31 +37,44 @@ loginCodeForm.addEventListener("click", (event) => {
 
     if (loginCodeForm.dataset.currently === "password") {
         loginPasswordLabel.classList.add("login-password-desaparecer")
-        loginCodeForm.innerHTML = "Iniciar sesión con contraseña"
+        loginCodeForm.innerHTML = "Iniciar con contraseña"
         loginCodeForm.dataset.currently = "code"
         loginPasswordInput.placeholder = "Codigo"
+        loginPasswordInput.style.cursor = "not-allowed"
+        setTimeout(() => {
+            loginCodeBtn.style.display = "block"
+        }, 300);
         setTimeout(() => {
             loginPasswordLabel.classList.remove("login-password-desaparecer")
         }, 1000);
-        submitForm.innerHTML = "Enviar codigo"
         submitForm.dataset.currently = "code"
+        
     }
 
     else if (loginCodeForm.dataset.currently === "code") {
         loginPasswordLabel.classList.add("login-password-desaparecer")
         loginCodeForm.dataset.currently = "password"
-        loginCodeForm.innerHTML = "Iniciar sesión con codigo"
+        loginCodeForm.innerHTML = "Iniciar con codigo"
+        loginPasswordInput.style.cursor = "initial"
+        setTimeout(() => {
+            loginCodeBtn.style.display = "none"
+        }, 300);
         loginPasswordLabel.classList.add("login-password-aparecer")
         loginPasswordInput.placeholder = "Contraseña"
         setTimeout(() => {
             loginPasswordLabel.classList.remove("login-password-desaparecer")
         }, 1000);
-        submitForm.innerHTML = "Iniciar"
     }
 
     setTimeout(() => {
         loginCodeForm.style.pointerEvents = "auto"
     }, 1000);
+})
+
+loginCodeBtn.addEventListener("click", (e) => {
+    e.preventDefault()
+    loginPasswordInput.style.cursor = "initial"
+    loginCodeBtn.innerHTML = "Codigo enviado"
 })
 
 submitForm.addEventListener("click", (event) => {
