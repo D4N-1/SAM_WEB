@@ -120,6 +120,8 @@ a {
 }
 
 .top-menu .top-menu__login-button {
+    position: relative;
+    top: -3px;
     padding: 15px 5px 15px 20px;
     background-color: var(--color-35f089);
     border-radius: 0 0 0 30px;
@@ -346,8 +348,6 @@ footer.home {
 
 /* >>>>>>>>>>>>>> LOGIN <<<<<<<<<<<<< */
 
-
-
 .action-card {
     border-left: none;
     border-right: none;
@@ -402,7 +402,7 @@ footer.home {
 
 .action-card__change-mailphone {
     border: none;
-    background-color: var(--color-ebe844);
+    background-color: var(--color-40D6B5);
     width: 40px;
     height: 35px;
     display: flex;
@@ -425,7 +425,7 @@ footer.home {
     left: 15px;
     padding: 5px;
     width: fit-content;
-    border-radius: 20px;
+    border-radius: 10px;
     flex: 1 0 40px;
     -webkit-appearance: none;
     -moz-appearance: none;     
@@ -442,6 +442,10 @@ footer.home {
     outline: none;
     flex: 0 1 auto;
     width: 100%;
+}
+
+.action-card__input--green {
+    background-color: var(--color-35f089);
 }
 
 .action-card__input--prefix {
@@ -533,7 +537,7 @@ footer.home {
 
 @media screen and (min-width: 1000px) {
     .login .action-card {
-        width: 55%
+        width: 50%
     }
 
     .login .action-card__form {
@@ -597,4 +601,21 @@ footer.home {
     border-radius: 20px;
     right: 20px;
     top: 20px;
+}
+
+.amogus {
+    animation: amogus .3s infinite ease;
+}
+@keyframes amogus {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(180deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }

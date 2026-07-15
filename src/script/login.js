@@ -6,7 +6,6 @@ const prefix = document.getElementById("prefix")
 const loginPasswordLabel = document.getElementById("loginPasswordLabel")
 const loginCodeForm = document.getElementById("loginCodeForm")
 const loginPasswordInput = document.getElementById("loginPasswordInput")
-const loginCodeBtn = document.getElementById("loginCodeBtn")
 const submitForm = document.getElementById("submitForm")
 
 changeFormPhone.addEventListener("click", (event) => {
@@ -33,59 +32,59 @@ changeFormMail.addEventListener("click", (event) => {
 
 loginCodeForm.addEventListener("click", (event) => {
     event.preventDefault()
-    loginCodeForm.style.pointerEvents = "none"
 
     if (loginCodeForm.dataset.currently === "password") {
-        loginPasswordLabel.classList.add("login-password-desaparecer")
         loginCodeForm.innerHTML = "Iniciar con contraseña"
         loginCodeForm.dataset.currently = "code"
         loginPasswordInput.placeholder = "Codigo"
-        loginPasswordInput.style.cursor = "not-allowed"
-        setTimeout(() => {
-            loginCodeBtn.style.display = "block"
-        }, 300);
-        setTimeout(() => {
-            loginPasswordLabel.classList.remove("login-password-desaparecer")
-        }, 1000);
+        loginPasswordInput.type = "button"
+        loginPasswordInput.value = "Enviar codigo"
+        loginPasswordInput.classList.add("action-card__input--green")
+        loginPasswordInput.style.width = "50%"
         submitForm.dataset.currently = "code"
-        
     }
 
     else if (loginCodeForm.dataset.currently === "code") {
-        loginPasswordLabel.classList.add("login-password-desaparecer")
         loginCodeForm.dataset.currently = "password"
         loginCodeForm.innerHTML = "Iniciar con codigo"
-        loginPasswordInput.style.cursor = "initial"
-        setTimeout(() => {
-            loginCodeBtn.style.display = "none"
-        }, 300);
-        loginPasswordLabel.classList.add("login-password-aparecer")
+        loginPasswordInput.type = "input"
+        loginPasswordInput.value = ""
+        loginPasswordInput.classList.remove("action-card__input--green")
+        loginPasswordInput.style.width = "100%"
         loginPasswordInput.placeholder = "Contraseña"
-        setTimeout(() => {
-            loginPasswordLabel.classList.remove("login-password-desaparecer")
-        }, 1000);
     }
-
-    setTimeout(() => {
-        loginCodeForm.style.pointerEvents = "auto"
-    }, 1000);
 })
 
-loginCodeBtn.addEventListener("click", (e) => {
-    e.preventDefault()
-    loginPasswordInput.style.cursor = "initial"
-    loginCodeBtn.innerHTML = "Codigo enviado"
+loginPasswordInput.addEventListener("click", (e) => {
+    if (loginPasswordInput.type === "button") {
+        loginPasswordInput.type = "input"
+        loginPasswordInput.value = ""
+        loginPasswordInput.textContent = "Codigo"
+        loginPasswordInput.classList.remove("action-card__input--green")
+        loginPasswordInput.style.width = "50%"
+    }
 })
 
 submitForm.addEventListener("click", (event) => {
     event.preventDefault()
-    if (submitForm.dataset.currently === "password") {
-
+    let codigoEnviado = document.getElementById("codigoEnviado")
+    function amongus() {
+        const amogus = document.getElementById("amogus")
+        amogus.style.display = "block"
+        codigoEnviado.innerHTML = "Empece a juga el juego de amonugs"
+        setTimeout(() => {
+            codigoEnviado.innerHTML = "Pense que iba a ganar pero me mataron"
+            setTimeout(() => {
+                codigoEnviado.innerHTML = "El juego es muy entretenido"
+                setTimeout(() => {
+                    codigoEnviado.innerHTML = "Pero me mata siempre el asesino"
+                    setTimeout(() => {
+                        amongus()
+                    }, 4000);
+                }, 4000);
+            }, 4000);
+        }, 3000);
     }
+    amongus()
 
-    else if (submitForm.dataset.currently === "code") {
-        submitForm.innerHTML = "Iniciar"
-        let codigoEnviado = document.getElementById("codigoEnviado")
-        codigoEnviado.innerHTML = "El codigo ha sido enviado!"
-    }
 })
