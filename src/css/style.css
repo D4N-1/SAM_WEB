@@ -1,17 +1,18 @@
 :root {
-    --color-fafafa: #fafafa;
-    --color-ebebeb: #ebebeb;
-    --color-cacaca: #c9c9c9;
-    --color-ebe844: #ebe844;
-    --color-edea6b: #edea6b;  
-    --color-26221f: #26221f;
-    --color-080807: #080807;
-    --color-35f089: #35f089;
-    --color-69FAAB: #69FAAB;
-    --color-40D6B5: #40D6B5;
-    --color-54EBB6: #54EBB6;
-} 
-
+    --color-black: oklch(0% 0 0);
+    --color-obsidian: oklch(14.7% 0.002 106);
+    --color-dark-espresso: oklch(25.2% 0.008 58);
+    --color-silver: oklch(81.7% 0 0);
+    --color-ash-gray: oklch(93.2% 0 0);
+    --color-off-white: oklch(98.5% 0 0);
+    --color-lime-yellow: oklch(89.8% 0.183 107.5);
+    --color-soft-yellow: oklch(91% 0.147 107.3);
+    --color-spring-mint: oklch(84.1% 0.218 152.1);
+    --color-light-mint: oklch(89.2% 0.161 154.5);
+    --color-seafoam-green: oklch(85.2% 0.144 168.9);
+    --color-turquoise: oklch(79.6% 0.126 177.3);
+    --color-white: oklch(1 0 0)
+}
 
 * {
     font-family: monospace;
@@ -21,8 +22,8 @@
 }
 
 body {
-    color: white;
-    background-color: var(--color-ebebeb);
+    color: var(--color-white);
+    background-color: var(--color-ash-gray);
 }
 
 
@@ -34,29 +35,35 @@ a {
 /* Menu Lateral */
 
 .side-menu {
+    --color-text: var(--color-black);
     position: fixed;
-    background-color: var(--color-fafafa);
+    background-color: var(--color-off-white);
     padding: 70px 10px 0 10px;
     display: flex;
     gap: 20px;
     transition: width .5s ease, opacity .5s ease;
     overflow: hidden;
     z-index: 50;
-    color: #000;
+    color: var(--color-text);
 }
 
 .side-menu__link {
     padding: 3px 0 3px 3px;
+    border-radius: 20px;
+    transition: background-color .5s ease, color .5s ease;
+    color: oklch(from var(--color-text) l c h / 0.6);
 }
 
 .side-menu__link:hover {
-    border-radius: 20px;
-    background-color: #bbb;
+    background-color: oklch(79.2% 0 0);
+    color: var(--color-text);
 }
 
 /* Menu superior */
 
 .top-menu {
+    --color-text: var(--color-black);
+
     position: fixed;
     top: 0;
     left: 0;
@@ -64,8 +71,8 @@ a {
     width: 100%;
     height: 50px;
     z-index: 60;
-    background-color: var(--color-fafafa);
-    color: #000;
+    background-color: var(--color-off-white);
+    color: var(--color-text);
     padding: 0 0 0 10px;
     box-shadow: 0px 0px 10px 0px black;
 
@@ -77,14 +84,14 @@ a {
 }
 
 .top-menu a{
-    transition: background-color .5s ease, transform .5s ease;
+    transition: color .2s ease;
     border-radius: 20px;
     padding: 2px 5px
 }
 
 .top-menu a:hover {
     text-decoration: underline;
-    color: var(--color-40D6B5)
+    color: var(--color-turquoise)
 }
 
 .top-menu__perfil {
@@ -123,7 +130,7 @@ a {
     position: relative;
     top: -3px;
     padding: 15px 5px 15px 20px;
-    background-color: var(--color-35f089);
+    background-color: var(--color-spring-mint);
     border-radius: 0 0 0 30px;
     text-align: center;
 }
@@ -143,7 +150,7 @@ main::after {
     width: 100vw;
     height: 100vh;
     pointer-events: none;
-    background-color: #0004;
+    background-color: oklch(from var(--color-black) l c h / 0.3);
     opacity: 0;
     transition: opacity .5s ease;
 }
@@ -153,7 +160,7 @@ body.side-menu__active main::after {
 }
 
 .section-1, .section-2, .section-3, .section-4{
-    color: black;
+    color: var(--color-black);
     min-height: 100vh;
     padding: 50px 10px
 }
@@ -163,7 +170,7 @@ body.side-menu__active main::after {
 }
 
 .section-3 {
-    background-color: var(--color-26221f)
+    background-color: var(--color-dark-espresso)
 }
 
 .section-3__box {
@@ -174,7 +181,7 @@ body.side-menu__active main::after {
 }
 
 .section-3__card {
-    background-color: #cccc;
+    background-color: oklch(84.5% 0 0 / 0.8);
     padding: 20px;
     border-radius: 20px;
 }
@@ -194,17 +201,17 @@ body.side-menu__active main::after {
     border: none;
     padding: 20px 5px 5px 5px; 
     border-radius: 10px;
-    background-color: #fff;
+    background-color: var(--color-white);
     transition: background-color .5s ease
 }
 
 .side-menu__btn-activator:hover {
     cursor: pointer;
-    background-color: #ddd;
+    background-color: var(--color-ash-gray);
 }
 
 footer.home {
-    background-color: var(--color-080807);
+    background-color: var(--color-obsidian);
 }
 
 /* >>>>>>>MEDIA QUERY<<<<< */
@@ -287,6 +294,10 @@ footer.home {
 
 @media screen and (max-width: 599px) {
 
+    .side-menu__activator {
+        display: none
+    }
+
     .top-menu {
         padding: 5px;
     }
@@ -349,9 +360,11 @@ footer.home {
 /* >>>>>>>>>>>>>> LOGIN <<<<<<<<<<<<< */
 
 .action-card {
+    --color-text: var(--color-black);
+    color: var(--color-text);
     border-left: none;
     border-right: none;
-    background-color: #fff;
+    background-color: var(--color-white);
     border-radius: 15px;
     padding: 40px 20px 60px 20px;
     box-shadow: 10px 10px 20px 0px #000a;
@@ -363,9 +376,12 @@ footer.home {
     margin: auto;
     overflow-x: hidden;
 }
+.action-card.login {
+    color: var(--color-text);
+}
 
 .action-card:hover {
-    transform: scale(1.05);
+    transform: scale(1.01);
 }
 
 .action-card__logo {
@@ -402,7 +418,7 @@ footer.home {
 
 .action-card__change-mailphone {
     border: none;
-    background-color: var(--color-40D6B5);
+    background-color: var(--color-turquoise);
     width: 40px;
     height: 35px;
     display: flex;
@@ -437,7 +453,7 @@ footer.home {
 .action-card__input {
     padding: 10px 12px;
     border-radius: 20px;
-    background-color: #eee;
+    background-color: var(--color-ash-gray);
     border: none;
     outline: none;
     flex: 0 1 auto;
@@ -445,7 +461,7 @@ footer.home {
 }
 
 .action-card__input--green {
-    background-color: var(--color-35f089);
+    background-color: var(--color-spring-mint);
 }
 
 .action-card__input--prefix {
@@ -462,15 +478,15 @@ footer.home {
     padding: 8px; 
     border-radius: 10px;
     border: none;
-    background-color: var(--color-35f089);
-    color: #fff;
+    background-color: var(--color-spring-mint);
+    color: var(--color-white);
     width: 70%;
     text-align: center;
     font-weight: bolder;
 }
 
 .action-card__change-form {
-    color: #3a9;
+    color: var(--color-spring-mint);
     padding: 5px;
     margin-bottom: 25px;
     letter-spacing: -1px;
@@ -591,12 +607,12 @@ footer.home {
 .section-1--home .home-main {
     position: relative;
     padding: 20px;
-    background-color: var(--color-cacaca);
+    background-color: var(--color-silver);
 }
 
 .section-1--home .home-main__box {
     position: absolute;
-    background-color: var(--color-ebebeb);
+    background-color: var(--color-ash-gray);
     padding: 80px;
     border-radius: 20px;
     right: 20px;
