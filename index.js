@@ -3,6 +3,7 @@ import path from "node:path"
 import cors from "cors"
 
 
+const ROUTES = 'routes'
 const app = express();
 
 app.use( express.json() );
@@ -14,16 +15,16 @@ const PORT = 81;
 app.use( express.static('src') )
 
 app.get('/', async(req, res) => {
-    res.status(200).sendFile( path.resolve( 'index.html') )
+    res.status(200).sendFile( path.resolve( ROUTES, 'root', 'index.html' ) )
 })
 
 app.get('/login', async(req, res) => {
-    res.status(200).sendFile( path.resolve( 'login.html') )
+    res.status(200).sendFile( path.resolve( ROUTES, 'login', 'login.html' ) )
 })
 
 
 app.get('/home', async(req, res) => {
-    res.status(200).sendFile( path.resolve( 'home.html') )
+    res.status(200).sendFile( path.resolve( ROUTES, 'home', 'home.html' ) )
 })
 
 
