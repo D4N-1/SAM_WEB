@@ -1,6 +1,7 @@
 import express from "express"
 import path from "node:path"
 import cors from "cors"
+import fs from "node:fs/promises"
 
 
 const ROUTES = 'routes'
@@ -25,6 +26,15 @@ app.get('/login', async(req, res) => {
 
 app.get('/home', async(req, res) => {
     res.status(200).sendFile( path.resolve( ROUTES, 'home', 'home.html' ) )
+})
+
+
+app.get('/random', async(req, res) => {
+
+    const route = path.resolve( 'src', 'media', 'images' )
+    const files = await fs.readdir(route)
+    res.status(200).sendFile( path.resolve( route, files[ Math.floor( Math.random() * files.length )] ) )
+
 })
 
 
