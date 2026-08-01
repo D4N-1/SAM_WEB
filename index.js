@@ -33,6 +33,13 @@ app.get('/random', async(req, res) => {
 
     const route = path.resolve( 'src', 'media', 'images' )
     const files = await fs.readdir(route)
+
+    res.set({
+        "Cache-Control": "no-store, no-cache, must-revalidate",
+        "Pragma": "no-cache",
+        "Expires": "0"
+    });
+
     res.status(200).sendFile( path.resolve( route, files[ Math.floor( Math.random() * files.length )] ) )
 
 })
