@@ -6,7 +6,7 @@ const prefix = document.getElementById("prefix")
 const loginPasswordLabel = document.getElementById("loginPasswordLabel")
 const loginCodeForm = document.getElementById("loginCodeForm")
 const loginPasswordInput = document.getElementById("loginPasswordInput")
-const submitForm = document.getElementById("submitForm")
+const submitFormButton = document.getElementById("submitFormButton")
 
 changeFormPhone.addEventListener("click", (event) => {
     event.preventDefault()
@@ -41,7 +41,7 @@ loginCodeForm.addEventListener("click", (event) => {
         loginPasswordInput.value = "Enviar codigo"
         loginPasswordInput.classList.add("action-card__input--green")
         loginPasswordInput.style.width = "50%"
-        submitForm.dataset.currently = "code"
+        submitFormButton.dataset.currently = "code"
     }
 
     else if (loginCodeForm.dataset.currently === "code") {
@@ -65,26 +65,61 @@ loginPasswordInput.addEventListener("click", (e) => {
     }
 })
 
-submitForm.addEventListener("click", (event) => {
-    event.preventDefault()
-    let codigoEnviado = document.getElementById("codigoEnviado")
-    function amongus() {
-        const amogus = document.getElementById("amogus")
-        amogus.style.display = "block"
-        codigoEnviado.innerHTML = "Empece a juga el juego de amonugs"
-        setTimeout(() => {
-            codigoEnviado.innerHTML = "Pense que iba a ganar pero me mataron"
-            setTimeout(() => {
-                codigoEnviado.innerHTML = "El juego es muy entretenido"
-                setTimeout(() => {
-                    codigoEnviado.innerHTML = "Pero me mata siempre el asesino"
-                    setTimeout(() => {
-                        amongus()
-                    }, 4000);
-                }, 4000);
-            }, 4000);
-        }, 3000);
-    }
-    amongus()
+const loginForm = document.getElementById("loginForm")
 
-})
+if (loginForm) {
+    loginForm.addEventListener("submit", async (e) => {
+        e.preventDefault()
+        const formData = new FormData(loginForm)
+        const datos = Object.fromEntries(formData.entries())
+        try {
+            const response = await fetch("https://api.sambot.live/auth/user/login", {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(datos)
+            })
+            const data = await response.json()
+
+            if (!response.ok) {
+                throw new Error("error")
+            }
+
+            if (data.access_token) {
+                console.log(data.access_token)
+            }
+        }
+        catch (error) {
+            console.error("Error: "+error)
+        }
+    })
+}
+
+const a = document.getElementById("a")
+
+if (a) {
+    a.addEventListener("click", async (e) => {
+        e.preventDefault()
+
+        try {
+            const response = await fetch("https://api.sambot.live/auth/me", {
+            method: "GET",
+            credentials: "include"
+            })
+            const data = await response.json()
+
+            if (!response.ok) {
+                throw new Error("error")
+            }
+
+            if (data.access_token) {
+                console.log("bien")
+            }
+        }
+        catch (error) {
+            console.error("Error: "+error)
+        }
+    })
+}
