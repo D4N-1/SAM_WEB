@@ -72,6 +72,20 @@ if (loginForm) {
         e.preventDefault()
         const formData = new FormData(loginForm)
         const datos = Object.fromEntries(formData.entries())
+        
+        const telefono = datos.contactUid;
+        const codigoPais = prefix.value;
+
+        const telefonoValido = libphonenumber.isValidPhoneNumber(telefono, codigoPais);
+
+        if (!telefonoValido) {
+            console.log("numero mal")
+            return; 
+        }
+
+        const telefonoLimpio = libphonenumber.parsePhoneNumber(telefono, codigoPais);
+        datos.contactUid = telefonoLimpio.countryCallingCode + telefonoLimpio.nationalNumber;
+        console.log(datos.contactUid)
         try {
             const response = await fetch("https://api.sambot.live/auth/user/login", {
             method: "POST",
@@ -114,12 +128,45 @@ if (a) {
                 throw new Error("error")
             }
 
-            if (data.access_token) {
-                console.log("bien")
-            }
+            console.log(data)
         }
         catch (error) {
             console.error("Error: "+error)
         }
     })
+}
+
+if (prefix && typeof libphonenumber !== "undefined") {
+    const listaCodigos = libphonenumber.getCountries()
+
+    prefix.innerHTML = "";
+
+    const listaPaises = listaCodigos.map(codigoPais => {
+        try {
+            
+            const prefijo = libphonenumber.getCountryCallingCode(codigoPais);
+
+            return { codigoPais, prefijo};
+        } catch (e) {
+            return null;
+        }
+    }).filter(Boolean);
+
+    listaPaises.sort((a, b) => a.codigoPais.localeCompare(b.codigoPais, 'es'));
+    listaPaises.forEach(pais => {
+        const option = document.createElement("option");
+        option.value = pais.codigoPais;
+        option.textContent = `${pais.codigoPais} +${pais.prefijo}`;
+
+        if (pais.codigoPais === 'CO') option.selected = true;
+
+        prefix.append(option);
+    });
+}
+
+if (inputMailPhone) {
+    inputMailPhone.addEventListener("input", (e) => {
+        
+        e.target.value = e.target.value.replace(/[^0-9 ]/g, "");
+    });
 }
