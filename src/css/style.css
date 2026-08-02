@@ -368,7 +368,7 @@ footer.home {
     border-radius: 15px;
     padding: 40px 20px 60px 20px;
     box-shadow: 10px 10px 20px 0px #000a;
-    transition: transform .5s ease;
+    transition: transform .5s ease, box-shadow .5s ease;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -381,7 +381,7 @@ footer.home {
 }
 
 .action-card:hover {
-    transform: scale(1.01);
+    box-shadow: 10px 10px 20px 0px #0005;
 }
 
 .action-card__logo {
@@ -448,6 +448,7 @@ footer.home {
     appearance: none;
     border: none;
     outline: none;
+    font-weight: bolder;
 }
 
 .action-card__input {
