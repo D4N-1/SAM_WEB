@@ -28,6 +28,10 @@ app.get('/home', async(req, res) => {
     res.status(200).sendFile( path.resolve( ROUTES, 'home', 'home.html' ) )
 })
 
+app.get('/signup', async(req, res) => {
+    res.status(200).sendFile( path.resolve( ROUTES, 'signup', 'signup.html' ) )
+})
+
 
 app.get('/random', async(req, res) => {
 
