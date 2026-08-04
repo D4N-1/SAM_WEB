@@ -14,15 +14,22 @@
 </head>
 <body class="login">
 
-    <my-header></my-header>
+    <header>
+        <nav>
+            <top-menu></top-menu>
+        </nav>
+    </header>
 
     <main>
         <section class="section-1">
-            <div class="action-card login">
+            <div class="action-card signup">
+                <svg id="signupformBack" class="action-card__arrow-back rounded-3 hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="40px" height="40px" fill="currentColor">
+                    <path d="M160,89.75H56l53-53a9.67,9.67,0,0,0,0-14,9.67,9.67,0,0,0-14,0l-56,56a30.18,30.18,0,0,0-8.5,18.5c0,1-.5,1.5-.5,2.5a6.34,6.34,0,0,0,.5,3,31.47,31.47,0,0,0,8.5,18.5l56,56a9.9,9.9,0,0,0,14-14l-52.5-53.5H160a10,10,0,0,0,0-20Z"/>
+                </svg>
                 <img class="action-card__logo" src="media/img/mini/Mayano_Top_Gun.webp" alt="">
                 <h2 class="action-card__title">Sam</h2>
                 <p class="action-card__p">Registro</p>
-
+                
                 <form class="action-card__form" id="sendCodeForm">
                     <label class="action-card__label"> 
                         <select id="prefix" class="action-card__select">
@@ -33,20 +40,15 @@
                     <input class="action-card__button" type="submit" value="Enviar codigo">
                 </form>
 
-                <form class="action-card__form hidden" id="verificationForm">
+                <form class="action-card__form d-none" id="verificationForm">
+                    
                     <label class="action-card__label"> 
                         <input id="inputCode" class="action-card__input" placeholder="Codigo" type="tel" name="code" required>
                     </label>
                     <input class="action-card__button" type="submit" value="Verificar">
                 </form>
                 
-                <form class="action-card__form hidden" id="signupForm">
-                    <label class="action-card__label">
-                        <select id="prefix" class="action-card__select" readonly>
-                            <option value="" class="action-card__option">CO +57</option>
-                        </select>
-                        <input id="inputMailPhone" class="action-card__input action-card__input--prefix" placeholder="Celular" type="tel" name="contactUid" required readonly>
-                    </label>
+                <form class="action-card__form d-none" id="signupForm">
                     <label class="action-card__label"> 
                         <input id="inputName" class="action-card__input" placeholder="Nombre" type="tel" name="name" required>
                     </label>
@@ -55,6 +57,7 @@
                     </label>
                     <input class="action-card__button" type="submit" value="Verificar">
                 </form>
+                <p class="action-card__p py-2" id="phoneCodeSent"></p>
             </div>
         </section>
     </main>

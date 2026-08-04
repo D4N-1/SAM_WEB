@@ -76,14 +76,14 @@
 .mb-7 { margin-bottom: 32px !important; }
 
 .rounded-0 { border-radius: 0 !important; }
-.rounded-1 { border-radius: 4px !important; }   /* Botones pequeños, tags */
-.rounded-2 { border-radius: 8px !important; }   /* El estándar para tarjetas */
-.rounded-3 { border-radius: 12px !important; }  /* Tarjetas grandes,modales */
-.rounded-4 { border-radius: 16px !important; }  /* Contenedores visuales amplios */
+.rounded-1 { border-radius: 4px !important; }   
+.rounded-2 { border-radius: 8px !important; }   
+.rounded-3 { border-radius: 12px !important; }  
+.rounded-4 { border-radius: 16px !important; }  
 .rounded-5 { border-radius: 20px !important; }
 .rounded-6 { border-radius: 24px !important; }
 .rounded-7 { border-radius: 32px !important; }
-.rounded-full { border-radius: 9999px !important; } /* Círculos perfectos o píldoras */
+.rounded-full { border-radius: 9999px !important; }
 
 .text-left   { text-align: left !important; }
 .text-center { text-align: center !important; }
@@ -93,10 +93,10 @@
 .font-medium { font-weight: 500 !important; }
 .font-bold   { font-weight: 700 !important; }
 
-.hidden  { display: none !important; }
+.d-none  { display: none !important; }
 .d-block { display: block !important; }
 .d-flex  { display: flex !important; }
-
+.hidden { pointer-events: none; opacity: 0; }
 
 * {
     font-family: monospace;
@@ -459,6 +459,7 @@ footer.home {
     flex-direction: column;
     margin: auto;
     overflow-x: hidden;
+    position: relative;
 }
 .action-card.login {
     color: var(--color-text);
@@ -586,46 +587,6 @@ footer.home {
     cursor: pointer;
 }
 
-.hidden {
-    pointer-events: none;
-    visibility: hidden;
-    opacity: 0;
-}
-
-
-.login-password-desaparecer {
-    animation: loginPasswordChange 1s ease forwards;
-}
-
-@keyframes loginPasswordChange {
-    0% {
-        transform: translate(0);
-    }
-
-    30% {
-        transform: translateX(-1000px);
-    }
-
-    31% {
-        transform: translateX(-1000px);
-        visibility: hidden;
-    }
-
-    32% {
-        visibility: hidden;
-        transform: translateX(1000px);
-    }
-
-    33% {
-        visibility: visible;
-        transform: translateX(1000px);
-    }
-
-    100% {
-        transform: translateX(0px);
-    }
-}
-
 @media screen and (min-width: 901px) {
     .login .action-card {
         width: 70%
@@ -677,8 +638,8 @@ footer.home {
     }
 }
 
-/* ////////////////////////// */
-/* HOME */
+/* //////////////////////////
+         HOME */
 .section-1--home {
     padding: 0;
     display: grid;
@@ -704,19 +665,57 @@ footer.home {
     top: 20px;
 }
 
-.amogus {
-    animation: amogus .3s infinite ease;
+.anim__vanish-form {
+    animation: vanish-form .5s ease forwards
 }
-@keyframes amogus {
-    0% {
-        transform: rotate(0deg);
-    }
 
-    50% {
-        transform: rotate(180deg);
-    }
+@keyframes vanish-form {
+    from { transform: translate(0, 0)}
 
-    100% {
-        transform: rotate(360deg);
-    }
+    to { transform: translate(-50vw, 0);}
 }
+
+.anim__vanish-form--to-right {
+    animation: vanish-form--to-right .5s ease forwards
+}
+
+@keyframes vanish-form--to-right {
+    from { transform: translate(0, 0)}
+
+    to { transform: translate(50vw, 0);}
+}
+
+.anim__appear-form {
+    animation: appear-form .5s ease forwards
+}
+
+@keyframes appear-form {
+    from { transform: translate(50vw, 0)}
+
+    to { transform: translate(0, 0);}
+}
+
+.anim__appear-form--from-left {
+    animation: appear-form--from-left .5s ease forwards
+}
+
+@keyframes appear-form--from-left {
+    from { transform: translate(-50vw, 0)}
+
+    to { transform: translate(0, 0);}
+}
+
+.action-card__arrow-back {
+    cursor: pointer;
+    transition: background-color .5s ease, opacity .5s ease;
+    position: absolute;
+    top: 30px;
+    left: 10px;
+}
+
+.action-card__arrow-back:hover {
+    background-color: oklch(80% 0 0);
+}
+
+
+
