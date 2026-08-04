@@ -27,19 +27,22 @@ if (prefix && typeof libphonenumber !== "undefined") {
 }
 
 const actionCard = document.querySelector(".action-card");
-const loginForm = document.getElementById("loginForm");
+const sendCodeForm = document.getElementById("sendCodeForm")
+const verificationForm = document.getElementById("verificationForm");
+const signupForm = document.getElementById("signupForm")
 const inputMailPhone = document.getElementById("inputMailPhone");
 const loginPasswordInput = document.getElementById("loginPasswordInput");
 
 let phone = "";
 let email = "";
+
 actionCard.addEventListener("click", async (e) => {
     const btnToEmail = e.target.closest("#changeFormToEmail");
     const btnToPhone = e.target.closest("#changeFormToPhone");
     const btnCodeForm = e.target.closest("#loginCodeForm");
     const inputPass = e.target.closest("#loginPasswordInput");
 
-    if (btnToEmail) {
+    /*if (btnToEmail) {
         e.preventDefault();
         document.getElementById("changeFormToPhone")?.classList.remove("hidden");
         btnToEmail.classList.add("hidden");
@@ -103,11 +106,72 @@ actionCard.addEventListener("click", async (e) => {
         inputPass.style.width = "50%";
         return;
     }
+    */
 });
-loginForm?.addEventListener("input", (e) => {
+
+sendCodeForm?.addEventListener("input", (e) => {
     if (e.target.name === "contactUid") {
         e.target.value = e.target.value.replace(/[^0-9 ]/g, "");
     }
+})
+
+sendCodeForm?.addEventListener("submit", async (e) => {
+    e.preventDefault()
+    
+    const formData = new FormData(sendCodeForm);
+    let datos = Object.fromEntries(
+        Array.from(formData.entries()).map(([k, v]) => [
+            k, 
+            typeof v === 'string' ? v.trim() : v
+        ])
+    );
+    
+
+    if (inputMailPhone.name === "contactUid") {
+
+        const telefono = datos.contactUid;
+        if (telefono && telefono.trim()) {
+            const codigoPais = prefix.value;
+            const telefonoLimpio = libphonenumber.parsePhoneNumberFromString(telefono, codigoPais);
+            phone = telefonoLimpio
+
+            if (!telefonoLimpio || !telefonoLimpio.isValid()) {
+                inputMailPhone.style.outline = "3px solid #f00";
+                return; 
+            }
+
+            datos.contactUid = telefonoLimpio.countryCallingCode + telefonoLimpio.nationalNumber;
+            inputMailPhone.style.outline = "none";
+        }
+    }
+
+        try {
+            const response = await fetch("https://api.sambot.live/auth/user/code", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(datos)
+            });
+
+            const data = await response.json().catch(() => null);
+
+            if (!response.ok) {
+                const errorMessage = data?.message || data?.error || `${response.status} ${response.statusText}`;
+                throw new Error(errorMessage);
+            }
+
+            if (data) {
+                console.log("Codigo enviado correctamente", data);
+            }
+        } catch (error) {
+            console.error("Error en submit:", error, datos);
+        } finally {
+            sendCodeForm.classList.add("hidden")
+            verificationForm.classList.remove("hidden")
+        }
+})
+
+
+verificationForm?.addEventListener("input", (e) => {
 
     if (e.target.name === "code") {
         let valor = e.target.value.toUpperCase();
@@ -116,11 +180,12 @@ loginForm?.addEventListener("input", (e) => {
     }
 });
 
-if (loginForm) {
-    loginForm.addEventListener("submit", async (e) => {
+if (verificationForm) {
+    verificationForm.addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        const formData = new FormData(loginForm);
+        const formData = new FormData(verificationForm);
+        formData.append("contactUid", phone)
         let datos = Object.fromEntries(
             Array.from(formData.entries()).map(([k, v]) => [
                 k, 
@@ -128,24 +193,57 @@ if (loginForm) {
             ])
         );
 
-        if (inputMailPhone.name === "contactUid") {
-            const telefono = datos.contactUid;
-            if (telefono && telefono.trim()) {
-                const codigoPais = prefix.value;
-                const telefonoLimpio = libphonenumber.parsePhoneNumberFromString(telefono, codigoPais);
+        try {
+            const response = await fetch("https://api.sambot.live/auth/user/login", {
+                method: "POST",
+                credentials: "include",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(datos)
+            });
 
-                if (!telefonoLimpio || !telefonoLimpio.isValid()) {
-                    inputMailPhone.style.outline = "3px solid #f00";
-                    return; 
-                }
+            const data = await response.json().catch(() => null);
 
-                datos.contactUid = telefonoLimpio.countryCallingCode + telefonoLimpio.nationalNumber;
-                inputMailPhone.style.outline = "none";
+            if (!response.ok) {
+                const errorMessage = data?.message || data?.error || `${response.status} ${response.statusText}`;
+                throw new Error(errorMessage);
             }
+
+            if (data) {
+                console.log("Login respuesta:", data);
+            }
+        } catch (error) {
+            console.error("Error en submit:", error);
+        } finally {
+            verificationForm.classList.add("hidden")
+            signupForm.classList.remove("hidden")
         }
+    });
+}
+
+if (signupForm) {
+    signupForm.addEventListener("submit", async (e) => {
+        e.preventDefault()
+        fetch('/auth/user/code', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+            contactUid: '573207654321',
+            email: 'dani@email.com'
+            })
+        })
+
+        const formData = new FormData(verificationForm);
+        let datos = Object.fromEntries(
+            Array.from(formData.entries()).map(([k, v]) => [
+                k, 
+                typeof v === 'string' ? v.trim() : v
+            ])
+        );
 
         try {
-            const response = await fetch("https://api.sambot.live/users", {
+            const response = await fetch("https://api.sambot.live/auth/user/code", {
                 method: "POST",
                 credentials: "include",
                 headers: { "Content-Type": "application/json" },
@@ -165,5 +263,5 @@ if (loginForm) {
         } catch (error) {
             console.error("Error en submit:", error);
         }
-    });
+    })
 }
